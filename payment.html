@@ -1,0 +1,303 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<title>Payment | Tuitions By Rahul Jaiswal</title>
+<meta name="description" content="Payment page for Tuitions By Rahul Jaiswal. View UPI and bank transfer details, confirm payments on WhatsApp, and connect directly for receipts." />
+<meta name="robots" content="index, follow" />
+<meta property="og:title" content="Payment | Tuitions By Rahul Jaiswal" />
+<meta property="og:description" content="Pay tuition fees through UPI or bank transfer and connect on WhatsApp for payment confirmation and receipts." />
+<meta property="og:type" content="website" />
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,700;0,900;1,400&family=DM+Sans:wght@300;400;500;600&display=swap" rel="stylesheet">
+<style>
+  :root {
+    --ink: #0d0d0d;
+    --cream: #faf8f3;
+    --gold: #c9a84c;
+    --teal: #1a5276;
+    --muted: #6b6b6b;
+    --border: #e0ddd6;
+    --card: #ffffff;
+    --section: #f4f1eb;
+  }
+
+  * { box-sizing: border-box; margin: 0; padding: 0; }
+
+  body {
+    font-family: 'DM Sans', sans-serif;
+    background: linear-gradient(180deg, #f6f1e7 0%, #faf8f3 100%);
+    color: var(--ink);
+    padding: 32px 20px 48px;
+  }
+
+  .page {
+    max-width: 1080px;
+    margin: 0 auto;
+  }
+
+  .back-link {
+    display: inline-flex;
+    align-items: center;
+    gap: 8px;
+    color: var(--teal);
+    text-decoration: none;
+    font-weight: 600;
+    margin-bottom: 24px;
+  }
+
+  .hero {
+    background: var(--teal);
+    color: #fff;
+    padding: 42px;
+    border: 1px solid rgba(255,255,255,0.08);
+    margin-bottom: 28px;
+  }
+
+  .eyebrow {
+    display: inline-block;
+    background: var(--gold);
+    color: var(--ink);
+    font-size: 0.78rem;
+    font-weight: 700;
+    letter-spacing: 0.12em;
+    text-transform: uppercase;
+    padding: 6px 12px;
+    margin-bottom: 18px;
+  }
+
+  h1, h2 {
+    font-family: 'Playfair Display', serif;
+  }
+
+  h1 {
+    font-size: clamp(2rem, 4vw, 3.2rem);
+    line-height: 1.1;
+    margin-bottom: 14px;
+  }
+
+  .hero p {
+    max-width: 720px;
+    line-height: 1.7;
+    color: rgba(255,255,255,0.84);
+  }
+
+  .hero-actions {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 14px;
+    margin-top: 24px;
+  }
+
+  .btn {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    min-height: 48px;
+    padding: 12px 24px;
+    text-decoration: none;
+    font-weight: 700;
+    letter-spacing: 0.03em;
+  }
+
+  .btn-primary {
+    background: var(--gold);
+    color: var(--ink);
+  }
+
+  .btn-outline {
+    border: 1px solid rgba(255,255,255,0.45);
+    color: #fff;
+  }
+
+  .grid {
+    display: grid;
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+    gap: 24px;
+    margin-bottom: 24px;
+  }
+
+  .card {
+    background: var(--card);
+    border: 1px solid var(--border);
+    padding: 28px;
+  }
+
+  .card h2 {
+    font-size: 1.55rem;
+    color: var(--teal);
+    margin-bottom: 14px;
+  }
+
+  .chip-row {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 10px;
+    margin: 14px 0 20px;
+  }
+
+  .chip {
+    background: var(--section);
+    border: 1px solid var(--border);
+    color: var(--teal);
+    padding: 8px 14px;
+    font-size: 0.86rem;
+    font-weight: 600;
+  }
+
+  .label {
+    color: var(--muted);
+    font-size: 0.9rem;
+    margin-bottom: 8px;
+  }
+
+  .value {
+    display: inline-block;
+    background: var(--section);
+    border: 1px solid var(--border);
+    padding: 12px 16px;
+    font-size: 1rem;
+    font-weight: 700;
+    letter-spacing: 0.03em;
+    margin-bottom: 12px;
+  }
+
+  table {
+    width: 100%;
+    border-collapse: collapse;
+    font-size: 0.92rem;
+  }
+
+  td {
+    padding: 11px 0;
+    border-bottom: 1px solid var(--border);
+    vertical-align: top;
+  }
+
+  td:first-child {
+    width: 42%;
+    color: var(--muted);
+    font-weight: 600;
+    padding-right: 14px;
+  }
+
+  tr:last-child td {
+    border-bottom: none;
+  }
+
+  .note {
+    color: var(--muted);
+    line-height: 1.7;
+    font-size: 0.92rem;
+  }
+
+  .support {
+    background: var(--section);
+    border: 1px solid var(--border);
+    padding: 28px;
+  }
+
+  .support h2 {
+    font-size: 1.4rem;
+    color: var(--teal);
+    margin-bottom: 12px;
+  }
+
+  .support p {
+    color: var(--muted);
+    line-height: 1.7;
+    margin-bottom: 16px;
+  }
+
+  .support-links {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 12px;
+  }
+
+  .support-links a {
+    color: var(--teal);
+    text-decoration: none;
+    font-weight: 700;
+  }
+
+  @media (max-width: 800px) {
+    body { padding: 20px 14px 36px; }
+    .hero { padding: 28px 22px; }
+    .grid { grid-template-columns: 1fr; }
+    .hero-actions { flex-direction: column; }
+    .btn { width: 100%; }
+  }
+</style>
+</head>
+<body>
+  <main class="page">
+    <a class="back-link" href="tuitions_rahul_jaiswal%20(1).html">&larr; Back to website</a>
+
+    <section class="hero">
+      <div class="eyebrow">Payment</div>
+      <h1>Pay Tuitions By Rahul Jaiswal</h1>
+      <p>Use UPI or bank transfer for fee payment. After payment, send the screenshot on WhatsApp for confirmation and receipt support.</p>
+      <div class="hero-actions">
+        <a class="btn btn-primary" href="upi://pay?pa=7042263815@hdfc&amp;pn=Tuitions%20by%20Rahul%20Jaiswal%20Pvt.%20Ltd.&amp;cu=INR">Open UPI App</a>
+        <a class="btn btn-outline" href="https://wa.me/tuitionsbyrahuljaiswal" target="_blank" rel="noopener noreferrer">Send Payment Screenshot</a>
+      </div>
+    </section>
+
+    <section class="grid">
+      <article class="card">
+        <h2>UPI Payment</h2>
+        <p class="note">Use any UPI-enabled app to pay quickly.</p>
+        <div class="chip-row">
+          <span class="chip">Google Pay</span>
+          <span class="chip">PhonePe</span>
+          <span class="chip">Paytm</span>
+          <span class="chip">Any UPI App</span>
+        </div>
+        <div class="label">UPI ID</div>
+        <div class="value">7042263815@hdfc</div>
+        <p class="note">Please double-check the UPI ID before sending payment and share the confirmation screenshot once done.</p>
+      </article>
+
+      <article class="card">
+        <h2>Bank Transfer</h2>
+        <table>
+          <tr>
+            <td>Account Name</td>
+            <td>Tuitions by Rahul Jaiswal Pvt. Ltd.</td>
+          </tr>
+          <tr>
+            <td>Bank</td>
+            <td>HDFC Bank</td>
+          </tr>
+          <tr>
+            <td>Account Number</td>
+            <td>50200064988405</td>
+          </tr>
+          <tr>
+            <td>IFSC Code</td>
+            <td>HDFC0000921</td>
+          </tr>
+          <tr>
+            <td>Branch</td>
+            <td>Kondli, Mayur Vihar Phase 3, New Delhi - 110096</td>
+          </tr>
+        </table>
+      </article>
+    </section>
+
+    <section class="support">
+      <h2>Need Help With Payment?</h2>
+      <p>For fee confirmation, receipts or quick assistance, connect directly using the links below.</p>
+      <div class="support-links">
+        <a href="tel:7042263815">Call 7042263815</a>
+        <a href="https://wa.me/tuitionsbyrahuljaiswal" target="_blank" rel="noopener noreferrer">WhatsApp</a>
+        <a href="https://instagram.com/itsokayrahul" target="_blank" rel="noopener noreferrer">Instagram: @itsokayrahul</a>
+        <a href="https://www.linkedin.com/in/rahul-jaiswal-826395100" target="_blank" rel="noopener noreferrer">LinkedIn</a>
+        <a href="https://youtube.com/@tuitionsbyrahuljaiswal?si=e_LTs5jmpxVZXpmC" target="_blank" rel="noopener noreferrer">YouTube</a>
+      </div>
+    </section>
+  </main>
+</body>
+</html>
