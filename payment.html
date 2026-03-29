@@ -2,13 +2,11 @@
 <html lang="en">
 <head>
 <meta charset="UTF-8" />
-<meta name="viewport" content="width=device-width, initial-scale=1.0" />
-<title>Payment | Tuitions By Rahul Jaiswal</title>
-<meta name="description" content="Payment page for Tuitions By Rahul Jaiswal. View UPI and bank transfer details, confirm payments on WhatsApp, and connect directly for receipts." />
-<meta name="robots" content="index, follow" />
-<meta property="og:title" content="Payment | Tuitions By Rahul Jaiswal" />
-<meta property="og:description" content="Pay tuition fees through UPI or bank transfer and connect on WhatsApp for payment confirmation and receipts." />
-<meta property="og:type" content="website" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+<title>Pay Fees – Tuitions By Rahul Jaiswal</title>
+<meta name="description" content="Pay your tuition fees securely via UPI or Bank Transfer to Tuitions By Rahul Jaiswal Pvt. Ltd." />
+<meta name="robots" content="noindex, follow" />
+<meta name="google-site-verification" content="google3008579e874455bd" />
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,700;0,900;1,400&family=DM+Sans:wght@300;400;500;600&display=swap" rel="stylesheet">
 <style>
@@ -16,288 +14,664 @@
     --ink: #0d0d0d;
     --cream: #faf8f3;
     --gold: #c9a84c;
+    --gold-light: #e8d49a;
+    --rust: #c0392b;
     --teal: #1a5276;
+    --teal-light: #2e86c1;
     --muted: #6b6b6b;
     --border: #e0ddd6;
-    --card: #ffffff;
-    --section: #f4f1eb;
+    --card-bg: #ffffff;
+    --section-alt: #f4f1eb;
   }
 
-  * { box-sizing: border-box; margin: 0; padding: 0; }
+  *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+  html { scroll-behavior: smooth; }
 
   body {
     font-family: 'DM Sans', sans-serif;
-    background: linear-gradient(180deg, #f6f1e7 0%, #faf8f3 100%);
+    background: var(--cream);
     color: var(--ink);
-    padding: 32px 20px 48px;
+    overflow-x: hidden;
+    min-height: 100vh;
   }
 
-  .page {
-    max-width: 1080px;
-    margin: 0 auto;
+  body::before {
+    content: '';
+    position: fixed;
+    inset: 0;
+    background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 200 200' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)' opacity='0.035'/%3E%3C/svg%3E");
+    pointer-events: none;
+    z-index: 9999;
   }
 
-  .back-link {
+  /* ── TOPBAR ── */
+  .topbar {
+    background: var(--teal);
+    color: #fff;
+    font-size: 0.8rem;
+    text-align: center;
+    padding: 8px 20px;
+    letter-spacing: 0.04em;
+  }
+  .topbar a { color: var(--gold-light); text-decoration: none; }
+
+  /* ── NAV ── */
+  nav {
+    position: sticky;
+    top: 0;
+    z-index: 100;
+    background: var(--cream);
+    border-bottom: 1px solid var(--border);
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding: 14px 6vw;
+  }
+  .nav-logo {
+    font-family: 'Playfair Display', serif;
+    font-size: 1.25rem;
+    font-weight: 900;
+    color: var(--teal);
+    line-height: 1.1;
+    text-decoration: none;
+  }
+  .nav-logo span { color: var(--gold); }
+  .nav-back {
+    background: var(--teal);
+    color: #fff;
+    border: none;
+    padding: 9px 22px;
+    font-family: 'DM Sans', sans-serif;
+    font-weight: 600;
+    font-size: 0.85rem;
+    cursor: pointer;
+    letter-spacing: 0.04em;
+    text-decoration: none;
+    transition: background 0.2s, transform 0.15s;
     display: inline-flex;
     align-items: center;
     gap: 8px;
-    color: var(--teal);
-    text-decoration: none;
-    font-weight: 600;
-    margin-bottom: 24px;
   }
+  .nav-back:hover { background: #154360; transform: translateY(-1px); }
 
-  .hero {
+  /* ── HERO BANNER ── */
+  .pay-hero {
     background: var(--teal);
     color: #fff;
-    padding: 42px;
-    border: 1px solid rgba(255,255,255,0.08);
-    margin-bottom: 28px;
+    padding: 60px 8vw 50px;
+    position: relative;
+    overflow: hidden;
   }
-
-  .eyebrow {
+  .pay-hero::after {
+    content: '';
+    position: absolute;
+    bottom: -2px; left: 0; right: 0;
+    height: 40px;
+    background: var(--cream);
+    clip-path: ellipse(55% 100% at 50% 100%);
+  }
+  .pay-badge {
     display: inline-block;
     background: var(--gold);
     color: var(--ink);
-    font-size: 0.78rem;
+    font-size: 0.72rem;
     font-weight: 700;
     letter-spacing: 0.12em;
     text-transform: uppercase;
-    padding: 6px 12px;
+    padding: 5px 14px;
     margin-bottom: 18px;
   }
-
-  h1, h2 {
+  .pay-hero h1 {
     font-family: 'Playfair Display', serif;
-  }
-
-  h1 {
     font-size: clamp(2rem, 4vw, 3.2rem);
+    font-weight: 900;
     line-height: 1.1;
     margin-bottom: 14px;
   }
-
-  .hero p {
-    max-width: 720px;
+  .pay-hero h1 em { color: var(--gold); font-style: italic; }
+  .pay-hero p {
+    color: rgba(255,255,255,0.8);
+    max-width: 580px;
     line-height: 1.7;
-    color: rgba(255,255,255,0.84);
+    font-size: 1rem;
+    margin-bottom: 32px;
   }
-
-  .hero-actions {
-    display: flex;
-    flex-wrap: wrap;
-    gap: 14px;
-    margin-top: 24px;
-  }
-
-  .btn {
-    display: inline-flex;
-    align-items: center;
-    justify-content: center;
-    min-height: 48px;
-    padding: 12px 24px;
-    text-decoration: none;
-    font-weight: 700;
-    letter-spacing: 0.03em;
-  }
-
-  .btn-primary {
+  .hero-actions { display: flex; gap: 14px; flex-wrap: wrap; }
+  .btn-upi {
     background: var(--gold);
     color: var(--ink);
+    padding: 14px 30px;
+    font-weight: 700;
+    font-size: 0.9rem;
+    letter-spacing: 0.05em;
+    text-decoration: none;
+    border: none;
+    cursor: pointer;
+    transition: background 0.2s, transform 0.15s;
+    display: inline-flex;
+    align-items: center;
+    gap: 8px;
   }
-
-  .btn-outline {
-    border: 1px solid rgba(255,255,255,0.45);
+  .btn-upi:hover { background: #b8932e; transform: translateY(-2px); }
+  .btn-wa {
+    border: 2px solid rgba(255,255,255,0.5);
     color: #fff;
+    padding: 12px 28px;
+    font-weight: 600;
+    font-size: 0.9rem;
+    text-decoration: none;
+    display: inline-flex;
+    align-items: center;
+    gap: 8px;
+    transition: border-color 0.2s, color 0.2s;
   }
+  .btn-wa:hover { border-color: var(--gold); color: var(--gold); }
 
-  .grid {
+  /* ── MAIN CONTENT ── */
+  .pay-main {
+    max-width: 1100px;
+    margin: 50px auto 60px;
+    padding: 0 6vw;
     display: grid;
-    grid-template-columns: repeat(2, minmax(0, 1fr));
-    gap: 24px;
-    margin-bottom: 24px;
+    grid-template-columns: 1fr 1fr;
+    gap: 28px;
+  }
+  @media (max-width: 768px) {
+    .pay-main { grid-template-columns: 1fr; margin: 36px auto 48px; }
   }
 
-  .card {
-    background: var(--card);
+  /* ── PAYMENT CARDS ── */
+  .pay-card {
+    background: #fff;
     border: 1px solid var(--border);
-    padding: 28px;
+    padding: 36px 32px;
+    position: relative;
   }
-
-  .card h2 {
-    font-size: 1.55rem;
+  .pay-card::before {
+    content: '';
+    position: absolute;
+    top: 0; left: 0; right: 0;
+    height: 4px;
+    background: var(--teal);
+  }
+  .pay-card.gold-top::before { background: var(--gold); }
+  .pay-card-label {
+    display: inline-block;
+    background: var(--section-alt);
     color: var(--teal);
+    font-size: 0.7rem;
+    font-weight: 700;
+    letter-spacing: 0.12em;
+    text-transform: uppercase;
+    padding: 4px 12px;
     margin-bottom: 14px;
+    border: 1px solid var(--border);
+  }
+  .pay-card h2 {
+    font-family: 'Playfair Display', serif;
+    font-size: 1.5rem;
+    font-weight: 700;
+    color: var(--teal);
+    margin-bottom: 10px;
+  }
+  .pay-card p {
+    color: var(--muted);
+    font-size: 0.9rem;
+    line-height: 1.6;
+    margin-bottom: 20px;
   }
 
-  .chip-row {
+  /* UPI pill row */
+  .upi-apps {
     display: flex;
     flex-wrap: wrap;
     gap: 10px;
-    margin: 14px 0 20px;
+    margin-bottom: 22px;
   }
-
-  .chip {
-    background: var(--section);
+  .upi-app {
+    background: var(--section-alt);
     border: 1px solid var(--border);
     color: var(--teal);
-    padding: 8px 14px;
-    font-size: 0.86rem;
+    padding: 8px 16px;
+    font-size: 0.84rem;
     font-weight: 600;
   }
 
-  .label {
-    color: var(--muted);
-    font-size: 0.9rem;
-    margin-bottom: 8px;
+  /* UPI ID box */
+  .upi-id-box {
+    background: var(--section-alt);
+    border: 1.5px solid var(--gold);
+    padding: 16px 20px;
+    margin-bottom: 16px;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 12px;
+    flex-wrap: wrap;
   }
-
-  .value {
-    display: inline-block;
-    background: var(--section);
-    border: 1px solid var(--border);
-    padding: 12px 16px;
-    font-size: 1rem;
+  .upi-id-text {
+    font-family: monospace;
+    font-size: 1.1rem;
     font-weight: 700;
-    letter-spacing: 0.03em;
-    margin-bottom: 12px;
+    color: var(--ink);
+    letter-spacing: 0.04em;
   }
+  .copy-btn {
+    background: var(--teal);
+    color: #fff;
+    border: none;
+    padding: 8px 16px;
+    font-family: 'DM Sans', sans-serif;
+    font-size: 0.8rem;
+    font-weight: 600;
+    cursor: pointer;
+    letter-spacing: 0.04em;
+    transition: background 0.2s;
+  }
+  .copy-btn:hover { background: #154360; }
+  .copy-btn.copied { background: #27ae60; }
 
-  table {
+  /* Bank table */
+  .bank-table {
     width: 100%;
     border-collapse: collapse;
-    font-size: 0.92rem;
+    font-size: 0.91rem;
   }
-
-  td {
-    padding: 11px 0;
-    border-bottom: 1px solid var(--border);
-    vertical-align: top;
-  }
-
-  td:first-child {
-    width: 42%;
+  .bank-table tr { border-bottom: 1px solid var(--border); }
+  .bank-table tr:last-child { border-bottom: none; }
+  .bank-table td { padding: 12px 0; vertical-align: top; }
+  .bank-table td:first-child {
     color: var(--muted);
     font-weight: 600;
+    width: 44%;
     padding-right: 14px;
   }
+  .bank-table td:last-child { color: var(--ink); font-weight: 500; }
+  .bank-table .mono { font-family: monospace; font-size: 0.95rem; letter-spacing: 0.04em; color: var(--teal); font-weight: 700; }
 
-  tr:last-child td {
-    border-bottom: none;
+  /* Copy row */
+  .copy-row {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    flex-wrap: wrap;
   }
 
-  .note {
-    color: var(--muted);
-    line-height: 1.7;
-    font-size: 0.92rem;
+  /* ── STEPS SECTION ── */
+  .pay-steps {
+    max-width: 1100px;
+    margin: 0 auto 32px;
+    padding: 0 6vw;
   }
-
-  .support {
-    background: var(--section);
+  .steps-label {
+    font-size: 0.72rem;
+    font-weight: 700;
+    letter-spacing: 0.16em;
+    text-transform: uppercase;
+    color: var(--gold);
+    margin-bottom: 8px;
+  }
+  .steps-title {
+    font-family: 'Playfair Display', serif;
+    font-size: 1.6rem;
+    font-weight: 900;
+    color: var(--ink);
+    margin-bottom: 28px;
+  }
+  .steps-grid {
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    gap: 0;
     border: 1px solid var(--border);
-    padding: 28px;
+    background: #fff;
   }
-
-  .support h2 {
-    font-size: 1.4rem;
-    color: var(--teal);
-    margin-bottom: 12px;
+  @media (max-width: 768px) {
+    .steps-grid { grid-template-columns: 1fr 1fr; }
   }
-
-  .support p {
-    color: var(--muted);
-    line-height: 1.7;
-    margin-bottom: 16px;
+  .step-item {
+    padding: 28px 24px;
+    border-right: 1px solid var(--border);
+    position: relative;
   }
+  .step-item:last-child { border-right: none; }
+  .step-num {
+    font-family: 'Playfair Display', serif;
+    font-size: 2.8rem;
+    font-weight: 900;
+    color: var(--gold-light);
+    line-height: 1;
+    margin-bottom: 10px;
+  }
+  .step-title { font-weight: 700; font-size: 0.95rem; color: var(--teal); margin-bottom: 6px; }
+  .step-desc { font-size: 0.84rem; color: var(--muted); line-height: 1.6; }
 
+  /* ── SUPPORT STRIP ── */
+  .support-strip {
+    max-width: 1100px;
+    margin: 0 auto 60px;
+    padding: 0 6vw;
+  }
+  .support-card {
+    background: var(--teal);
+    color: #fff;
+    padding: 32px 36px;
+    display: flex;
+    flex-wrap: wrap;
+    gap: 24px;
+    align-items: center;
+    justify-content: space-between;
+  }
+  .support-card h3 {
+    font-family: 'Playfair Display', serif;
+    font-size: 1.3rem;
+    font-weight: 700;
+    margin-bottom: 6px;
+  }
+  .support-card p { color: rgba(255,255,255,0.75); font-size: 0.9rem; }
   .support-links {
     display: flex;
     flex-wrap: wrap;
-    gap: 12px;
+    gap: 14px;
+    align-items: center;
   }
-
-  .support-links a {
-    color: var(--teal);
-    text-decoration: none;
+  .support-link {
+    color: var(--gold-light);
     font-weight: 700;
+    text-decoration: none;
+    font-size: 0.9rem;
+    transition: color 0.2s;
   }
+  .support-link:hover { color: #fff; }
 
-  @media (max-width: 800px) {
-    body { padding: 20px 14px 36px; }
-    .hero { padding: 28px 22px; }
-    .grid { grid-template-columns: 1fr; }
-    .hero-actions { flex-direction: column; }
-    .btn { width: 100%; }
+  /* ── NOTICE ── */
+  .notice {
+    max-width: 1100px;
+    margin: 0 auto 40px;
+    padding: 0 6vw;
+  }
+  .notice-inner {
+    background: rgba(201,168,76,0.1);
+    border: 1.5px solid var(--gold);
+    border-left: 5px solid var(--gold);
+    padding: 18px 22px;
+    display: flex;
+    gap: 14px;
+    align-items: flex-start;
+  }
+  .notice-icon { font-size: 1.3rem; flex-shrink: 0; }
+  .notice-text { font-size: 0.9rem; color: var(--ink); line-height: 1.7; }
+  .notice-text strong { color: var(--teal); }
+
+  /* ── FOOTER ── */
+  footer {
+    background: var(--ink);
+    color: rgba(255,255,255,0.5);
+    padding: 28px 8vw;
+    display: flex;
+    flex-wrap: wrap;
+    gap: 20px;
+    align-items: center;
+    justify-content: space-between;
+    font-size: 0.8rem;
+  }
+  .footer-logo {
+    font-family: 'Playfair Display', serif;
+    font-size: 1.1rem;
+    font-weight: 900;
+    color: #fff;
+  }
+  .footer-logo span { color: var(--gold); }
+  footer a { color: rgba(255,255,255,0.5); text-decoration: none; transition: color 0.2s; }
+  footer a:hover { color: var(--gold); }
+
+  /* ── FLOATING WA ── */
+  .wa-float {
+    position: fixed;
+    bottom: 28px;
+    right: 28px;
+    width: 56px;
+    height: 56px;
+    background: #25D366;
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    box-shadow: 0 6px 24px rgba(37,211,102,0.4);
+    z-index: 1000;
+    transition: transform 0.2s;
+  }
+  .wa-float:hover { transform: scale(1.1); }
+  .wa-float svg { width: 28px; height: 28px; fill: #fff; }
+
+  @media (max-width: 600px) {
+    .pay-hero { padding: 44px 6vw 40px; }
+    .pay-card { padding: 24px 20px; }
+    .steps-grid { grid-template-columns: 1fr; }
+    .step-item { border-right: none; border-bottom: 1px solid var(--border); }
+    .step-item:last-child { border-bottom: none; }
   }
 </style>
 </head>
 <body>
-  <main class="page">
-    <a class="back-link" href="tuitions_rahul_jaiswal%20(1).html">&larr; Back to website</a>
 
-    <section class="hero">
-      <div class="eyebrow">Payment</div>
-      <h1>Pay Tuitions By Rahul Jaiswal</h1>
-      <p>Use UPI or bank transfer for fee payment. After payment, send the screenshot on WhatsApp for confirmation and receipt support.</p>
-      <div class="hero-actions">
-        <a class="btn btn-primary" href="upi://pay?pa=7042263815@hdfc&amp;pn=Tuitions%20by%20Rahul%20Jaiswal%20Pvt.%20Ltd.&amp;cu=INR">Open UPI App</a>
-        <a class="btn btn-outline" href="https://wa.me/tuitionsbyrahuljaiswal" target="_blank" rel="noopener noreferrer">Send Payment Screenshot</a>
-      </div>
-    </section>
+<!-- TOPBAR -->
+<div class="topbar">
+  📞 <a href="tel:7042263815">7042263815</a> &nbsp;|&nbsp; ✉️ tuitionsbyrahuljaiswal@gmail.com &nbsp;|&nbsp; CBSE · IB · NIOS · CUET · CA · CMA · CS · ACCA · CFA
+</div>
 
-    <section class="grid">
-      <article class="card">
-        <h2>UPI Payment</h2>
-        <p class="note">Use any UPI-enabled app to pay quickly.</p>
-        <div class="chip-row">
-          <span class="chip">Google Pay</span>
-          <span class="chip">PhonePe</span>
-          <span class="chip">Paytm</span>
-          <span class="chip">Any UPI App</span>
-        </div>
-        <div class="label">UPI ID</div>
-        <div class="value">7042263815@hdfc</div>
-        <p class="note">Please double-check the UPI ID before sending payment and share the confirmation screenshot once done.</p>
-      </article>
+<!-- NAV -->
+<nav>
+  <a href="index.html" class="nav-logo">Tuitions by<br><span>Rahul Jaiswal</span> <span style="font-size:0.65rem;color:var(--muted);font-weight:500;">Pvt. Ltd.</span></a>
+  <a href="index.html" class="nav-back">← Back to Home</a>
+</nav>
 
-      <article class="card">
-        <h2>Bank Transfer</h2>
-        <table>
-          <tr>
-            <td>Account Name</td>
-            <td>Tuitions by Rahul Jaiswal Pvt. Ltd.</td>
-          </tr>
-          <tr>
-            <td>Bank</td>
-            <td>HDFC Bank</td>
-          </tr>
-          <tr>
-            <td>Account Number</td>
-            <td>50200064988405</td>
-          </tr>
-          <tr>
-            <td>IFSC Code</td>
-            <td>HDFC0000921</td>
-          </tr>
-          <tr>
-            <td>Branch</td>
-            <td>Kondli, Mayur Vihar Phase 3, New Delhi - 110096</td>
-          </tr>
-        </table>
-      </article>
-    </section>
+<!-- HERO -->
+<div class="pay-hero">
+  <div class="pay-badge">Secure Fee Payment</div>
+  <h1>Pay Your <em>Tuition Fees</em></h1>
+  <p>Quick, hassle-free fee payment via UPI or direct bank transfer. After payment, send the screenshot on WhatsApp for instant confirmation and receipt.</p>
+  <div class="hero-actions">
+    <a href="upi://pay?pa=7042263815@hdfc&pn=Tuitions%20by%20Rahul%20Jaiswal%20Pvt.%20Ltd.&cu=INR" class="btn-upi">
+      💳 Open UPI App →
+    </a>
+    <a href="https://wa.me/917042263815" target="_blank" rel="noopener noreferrer" class="btn-wa">
+      <svg width="18" height="18" viewBox="0 0 24 24" fill="currentColor"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 00-3.48-8.413z"/></svg>
+      Send Payment Screenshot
+    </a>
+  </div>
+</div>
 
-    <section class="support">
-      <h2>Need Help With Payment?</h2>
-      <p>For fee confirmation, receipts or quick assistance, connect directly using the links below.</p>
-      <div class="support-links">
-        <a href="tel:7042263815">Call 7042263815</a>
-        <a href="https://wa.me/tuitionsbyrahuljaiswal" target="_blank" rel="noopener noreferrer">WhatsApp</a>
-        <a href="https://instagram.com/itsokayrahul" target="_blank" rel="noopener noreferrer">Instagram: @itsokayrahul</a>
-        <a href="https://www.linkedin.com/in/rahul-jaiswal-826395100" target="_blank" rel="noopener noreferrer">LinkedIn</a>
-        <a href="https://youtube.com/@tuitionsbyrahuljaiswal?si=e_LTs5jmpxVZXpmC" target="_blank" rel="noopener noreferrer">YouTube</a>
-      </div>
-    </section>
-  </main>
+<!-- HOW TO PAY STEPS -->
+<div style="height:40px;"></div>
+<div class="pay-steps">
+  <div class="steps-label">Simple Process</div>
+  <div class="steps-title">How to Pay</div>
+  <div class="steps-grid">
+    <div class="step-item">
+      <div class="step-num">01</div>
+      <div class="step-title">Choose Method</div>
+      <p class="step-desc">Pick UPI (Google Pay, PhonePe, Paytm) or bank transfer — whichever works best for you.</p>
+    </div>
+    <div class="step-item">
+      <div class="step-num">02</div>
+      <div class="step-title">Transfer Amount</div>
+      <p class="step-desc">Send the exact fee amount as discussed with the institute to the UPI ID or bank account below.</p>
+    </div>
+    <div class="step-item">
+      <div class="step-num">03</div>
+      <div class="step-title">Save Screenshot</div>
+      <p class="step-desc">Take a screenshot or note the transaction ID / UTR number after the payment is successful.</p>
+    </div>
+    <div class="step-item">
+      <div class="step-num">04</div>
+      <div class="step-title">WhatsApp Us</div>
+      <p class="step-desc">Send the screenshot on WhatsApp to 7042263815 — you'll receive your receipt within 24 hours.</p>
+    </div>
+  </div>
+</div>
+
+<!-- PAYMENT CARDS -->
+<div class="pay-main">
+
+  <!-- UPI Card -->
+  <div class="pay-card gold-top">
+    <div class="pay-card-label">Recommended · Instant</div>
+    <h2>UPI Payment</h2>
+    <p>Use any UPI-enabled app to pay instantly. Scan the UPI ID or copy it directly into your app.</p>
+
+    <div class="upi-apps">
+      <div class="upi-app">🟢 Google Pay</div>
+      <div class="upi-app">🟣 PhonePe</div>
+      <div class="upi-app">🔵 Paytm</div>
+      <div class="upi-app">🟠 Any UPI App</div>
+    </div>
+
+    <div style="font-size:0.75rem;font-weight:700;letter-spacing:0.1em;text-transform:uppercase;color:var(--muted);margin-bottom:10px;">UPI ID</div>
+    <div class="upi-id-box">
+      <span class="upi-id-text" id="upiId">7042263815@hdfc</span>
+      <button class="copy-btn" id="copyUpiBtn" onclick="copyUPI()">Copy</button>
+    </div>
+
+    <p style="font-size:0.85rem;color:var(--muted);line-height:1.6;">
+      ✅ Double-check the UPI ID before confirming.<br>
+      ✅ Name shows as <strong style="color:var(--ink);">Tuitions by Rahul Jaiswal Pvt. Ltd.</strong><br>
+      ✅ Share confirmation screenshot after payment.
+    </p>
+
+    <div style="margin-top:24px;">
+      <a href="upi://pay?pa=7042263815@hdfc&pn=Tuitions%20by%20Rahul%20Jaiswal%20Pvt.%20Ltd.&cu=INR"
+         style="display:inline-block;background:var(--gold);color:var(--ink);font-weight:700;font-size:0.88rem;letter-spacing:0.04em;padding:13px 24px;text-decoration:none;transition:background 0.2s;">
+        Open in UPI App →
+      </a>
+    </div>
+  </div>
+
+  <!-- Bank Transfer Card -->
+  <div class="pay-card">
+    <div class="pay-card-label">NEFT / RTGS / IMPS</div>
+    <h2>Bank Transfer</h2>
+    <p>Transfer directly to our HDFC Bank account using the details below. Suitable for larger fee amounts.</p>
+
+    <table class="bank-table">
+      <tr>
+        <td>Account Name</td>
+        <td><strong>Tuitions by Rahul Jaiswal Pvt. Ltd.</strong></td>
+      </tr>
+      <tr>
+        <td>Bank</td>
+        <td>HDFC Bank</td>
+      </tr>
+      <tr>
+        <td>Account Number</td>
+        <td>
+          <div class="copy-row">
+            <span class="mono" id="accNum">50200064988405</span>
+            <button class="copy-btn" id="copyAccBtn" onclick="copyAcc()" style="font-size:0.75rem;padding:6px 12px;">Copy</button>
+          </div>
+        </td>
+      </tr>
+      <tr>
+        <td>IFSC Code</td>
+        <td>
+          <div class="copy-row">
+            <span class="mono" id="ifscCode">HDFC0000921</span>
+            <button class="copy-btn" id="copyIfscBtn" onclick="copyIFSC()" style="font-size:0.75rem;padding:6px 12px;">Copy</button>
+          </div>
+        </td>
+      </tr>
+      <tr>
+        <td>Account Type</td>
+        <td>Current Account</td>
+      </tr>
+      <tr>
+        <td>Branch</td>
+        <td>Kondli, Mayur Vihar Phase 3,<br>New Delhi – 110096</td>
+      </tr>
+    </table>
+  </div>
+
+</div>
+
+<!-- IMPORTANT NOTICE -->
+<div class="notice">
+  <div class="notice-inner">
+    <div class="notice-icon">⚠️</div>
+    <div class="notice-text">
+      <strong>Important:</strong> After completing your payment, please send the payment screenshot or transaction reference number on WhatsApp to <strong>7042263815</strong>. This helps us confirm your payment and issue a receipt promptly. Do not share your OTP, PIN or password with anyone claiming to be from the institute.
+    </div>
+  </div>
+</div>
+
+<!-- SUPPORT STRIP -->
+<div class="support-strip">
+  <div class="support-card">
+    <div>
+      <h3>Need Help With Payment?</h3>
+      <p>For fee confirmation, receipts or payment assistance — reach out directly.</p>
+    </div>
+    <div class="support-links">
+      <a href="tel:7042263815" class="support-link">📞 7042263815</a>
+      <a href="https://wa.me/917042263815" target="_blank" rel="noopener noreferrer" class="support-link">💬 WhatsApp</a>
+      <a href="https://instagram.com/itsokayrahul" target="_blank" rel="noopener noreferrer" class="support-link">📸 @itsokayrahul</a>
+      <a href="mailto:tuitionsbyrahuljaiswal@gmail.com" class="support-link">✉️ Email</a>
+    </div>
+  </div>
+</div>
+
+<!-- FLOATING WA -->
+<a href="https://wa.me/917042263815" class="wa-float" target="_blank" title="Chat on WhatsApp">
+  <svg viewBox="0 0 24 24"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 00-3.48-8.413z"/></svg>
+</a>
+
+<!-- FOOTER -->
+<footer>
+  <div>
+    <div class="footer-logo">Tuitions by <span>Rahul Jaiswal</span> Pvt. Ltd.</div>
+    <div style="margin-top:4px;font-size:0.76rem;">Academic Excellence from KG to Professional</div>
+  </div>
+  <div style="font-size:0.76rem; color:rgba(255,255,255,0.3);">CBSE · IB · NIOS · CUET · CA · CMA · CS · ACCA · CFA · BMS · BBA · BCOM</div>
+  <a href="index.html" style="color:rgba(255,255,255,0.5);font-size:0.82rem;">← Back to Main Website</a>
+</footer>
+
+<script>
+  function copyUPI() {
+    navigator.clipboard.writeText('7042263815@hdfc').then(() => {
+      const btn = document.getElementById('copyUpiBtn');
+      btn.textContent = 'Copied ✓';
+      btn.classList.add('copied');
+      setTimeout(() => { btn.textContent = 'Copy'; btn.classList.remove('copied'); }, 2500);
+    }).catch(() => {
+      // Fallback
+      const el = document.createElement('textarea');
+      el.value = '7042263815@hdfc';
+      document.body.appendChild(el);
+      el.select();
+      document.execCommand('copy');
+      document.body.removeChild(el);
+      const btn = document.getElementById('copyUpiBtn');
+      btn.textContent = 'Copied ✓';
+      btn.classList.add('copied');
+      setTimeout(() => { btn.textContent = 'Copy'; btn.classList.remove('copied'); }, 2500);
+    });
+  }
+
+  function copyAcc() {
+    navigator.clipboard.writeText('50200064988405').then(() => {
+      const btn = document.getElementById('copyAccBtn');
+      btn.textContent = 'Copied ✓';
+      btn.classList.add('copied');
+      setTimeout(() => { btn.textContent = 'Copy'; btn.classList.remove('copied'); }, 2500);
+    });
+  }
+
+  function copyIFSC() {
+    navigator.clipboard.writeText('HDFC0000921').then(() => {
+      const btn = document.getElementById('copyIfscBtn');
+      btn.textContent = 'Copied ✓';
+      btn.classList.add('copied');
+      setTimeout(() => { btn.textContent = 'Copy'; btn.classList.remove('copied'); }, 2500);
+    });
+  }
+</script>
 </body>
 </html>
